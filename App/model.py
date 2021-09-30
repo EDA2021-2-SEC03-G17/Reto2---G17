@@ -39,12 +39,54 @@ los mismos.
 
 # Construccion de modelos
 
-# Funciones para agregar informacion al catalogo
+def newCatalog():
 
+    catalog = {'Artistas': None,
+               'Obras': None,
+               'Medios Obras': None}
+
+    catalog['Artistas'] = lt.newList('SINGLE_LINKED')
+
+    catalog['Obras'] = lt.newList('SINGLE_LINKED')
+
+    catalog['Medios Obras'] = mp.newMap(294,
+                                   maptype='PROBING',
+                                   loadfactor=4.0)
+
+    return catalog
+
+# Funciones para agregar informacion al catalogo
+def addArtist(catalog, artist):
+    lt.addLast(catalog['Artistas'], artist)
+
+def addArtwork (catalog, artwork):
+  
+    lt.addLast(catalog['Obras'], artwork)
+    mp.put(catalog['Medios Obras'], artwork["Medium"], artwork)
+
+    return catalog
+  
 # Funciones para creacion de datos
 
 # Funciones de consulta
+def medioAntiguo(catalogo,num,medio):
+
+    medium = mp.get(catalogo["Medios Obras"], medio)
+    oldartwork = lt.newList("ARRAY_LIST")
+    print(medium)
+    if medium:
+        lt.addLast(oldartwork, me.getValue(medio))
+        
+    return oldartwork
+
+def ArtistsSize(catalog):
+    return lt.size(catalog['Artistas'])
+
+def ArtworksSize(catalog):
+    return lt.size(catalog['Obras'])
 
 # Funciones utilizadas para comparar elementos dentro de una lista
 
 # Funciones de ordenamiento
+
+
