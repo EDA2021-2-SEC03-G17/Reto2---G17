@@ -70,9 +70,9 @@ def medioAntiguo(catalog):
 while True:
     printMenu()
     inputs = input('Seleccione una opción para continuar\n')
-    catalog = controller.initCatalog()
     if int(inputs[0]) == 1:
         print("Cargando información de los archivos ....") 
+        catalog = controller.initCatalog()
         controller.loadData(catalog)
         print(" ")
         print('Artistas cargadas: ' + str(controller.ArtistsSize(catalog)))

@@ -70,12 +70,12 @@ def addArtwork (catalog, artwork):
 
 # Funciones de consulta
 def medioAntiguo(catalogo,num,medio):
-
+    print(medio)
     medium = mp.get(catalogo["Medios Obras"], medio)
     oldartwork = lt.newList("ARRAY_LIST")
     print(medium)
     if medium:
-        lt.addLast(oldartwork, me.getValue(medio))
+        lt.addLast(oldartwork, me.getValue(medium))
         
     return oldartwork
 
