@@ -21,6 +21,7 @@
  """
 
 import config as cf
+import time
 import model
 import csv
 
@@ -45,29 +46,36 @@ def loadData(catalog):
     Carga los datos de los archivos y cargar los datos en la
     estructura de datos
     """
-    loadArtists(catalog)
-    loadArtworks(catalog)
+    t1=loadArtists(catalog)
+    t2=loadArtworks(catalog)
+    print("("+str(t1+t2)+")")
+    print("Nacionalidad"+str(t1))
+    print("Medio"+str(t2))
+    
+
 
 def loadArtists(catalog):
-    """
-    Carga los libros del archivo.  Por cada libro se indica al
-    modelo que debe adicionarlo al catalogo.
-    """
+
+    start_time = time.process_time() 
     booksfile = cf.data_dir + 'MoMA/Artists-utf8-small.csv'
     input_file = csv.DictReader(open(booksfile, encoding='utf-8'))
     for artist in input_file:
         model.addArtist(catalog, artist)
+    stop_time = time.process_time() 
+    elapsed_time_mseg = (stop_time - start_time)*1000  
+    return elapsed_time_mseg     
 
 def loadArtworks(catalog):
-    """
-    Carga todos los tags del archivo e indica al modelo
-    que los adicione al catalogo
-    """
+
+    start_time = time.process_time() 
     tagsfile = cf.data_dir + 'MoMA/Artworks-utf8-small.csv'
     input_file = csv.DictReader(open(tagsfile, encoding='utf-8'))
     for artwork in input_file:
         model.addArtwork(catalog, artwork)
-
+    stop_time = time.process_time() 
+    elapsed_time_mseg = (stop_time - start_time)*1000
+    return elapsed_time_mseg  
+        
 # Funciones de ordenamiento
 
 # Funciones de consulta sobre el catálogo

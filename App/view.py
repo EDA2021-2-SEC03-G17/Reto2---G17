@@ -37,27 +37,26 @@ operación solicitada
 #MENU
 
 def printMenu():
-    print("Bienvenido a Catalogo MoMA'S")
+    print("___________________________________________")
+    print("    BIENVENIDO AL CATALOGO DE MoMA'S")
+    print("___________________________________________")
+    print("")
     print("1 ) Cargar información en el catálogo")
     print("2 ) Obras mas antiguas por medio")
     print("0 ) Salir")
+    print("")
+    print("___________________________________________")
 
 #CARGA DE DATOS [1]
 def initCatalog():
-    """
-    Inicializa el catalogo de libros
-    """
     return controller.initCatalog()
 
 def loadData(catalog):
-    """
-    Carga los libros en el catalogo
-    """
     controller.loadData(catalog)
 
 catalog = None
 
-#REQ1
+#REQ1 [2]
 
 def medioAntiguo(catalog):
     num=int(input("Ingrese el numero de obras que quiere ver: "))
@@ -72,11 +71,10 @@ while True:
     inputs = input('Seleccione una opción para continuar\n')
     if int(inputs[0]) == 1:
         print("Cargando información de los archivos ....") 
-        catalog = controller.initCatalog()
-        controller.loadData(catalog)
+        catalog = initCatalog()
+        loadData(catalog)
         print(" ")
         print('Artistas cargadas: ' + str(controller.ArtistsSize(catalog)))
-        print(mp.get(catalog["Medios Obras"],"Lithograph, offset printed"))
         print(" ")
         print('Obras cargadas: ' + str(controller.ArtworksSize(catalog)))
         print(" ")
@@ -84,7 +82,6 @@ while True:
     elif int(inputs[0]) == 2:
         lista=medioAntiguo(catalog)
         print(lista)
-
 
     else:
         sys.exit(0)
