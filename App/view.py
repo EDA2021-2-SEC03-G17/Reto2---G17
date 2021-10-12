@@ -20,6 +20,7 @@
  * along withthis program.  If not, see <http://www.gnu.org/licenses/>.
  """
 
+
 import config as cf
 import sys
 import controller
@@ -43,6 +44,7 @@ def printMenu():
     print("")
     print("1 ) Cargar información en el catálogo")
     print("2 ) Obras mas antiguas por medio")
+    print("3 ) Numero total de obras por nacionalidad")
     print("0 ) Salir")
     print("")
     print("___________________________________________")
@@ -64,6 +66,12 @@ def medioAntiguo(catalog):
     antiguos=controller.medioAntiguo(catalog,num,medio)
     return antiguos
 
+#REQ2 [3]
+def numeroObrasNacionalidad(catalog):
+    nation = input("Ingrese la nacionalidad que quiere consultar\n")
+    resultado = controller.obrasNacionalidad(catalog, nation)
+    return resultado
+
 #MENU PRINCIPAL
 
 while True:
@@ -82,7 +90,10 @@ while True:
     elif int(inputs[0]) == 2:
         lista=medioAntiguo(catalog)
         print(lista)
-
+    
+    elif int(inputs[0]) == 3:
+        lista = numeroObrasNacionalidad(catalog)
+        print(lista)
     else:
         sys.exit(0)
 sys.exit(0)

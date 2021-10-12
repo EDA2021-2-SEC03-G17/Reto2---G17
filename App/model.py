@@ -98,6 +98,14 @@ def medioAntiguo(catalogo,num,medio):
         
     return oldartwork
 
+def obrasNacionalidad(catalog, nacionalidad):
+    existe = mp.contains(catalog["Nacionalidad Artistas"],nacionalidad)
+    if existe:
+        pareja = mp.get(catalog["Nacionalidad Artistas"], nacionalidad)
+        list_artistas = me.getValue(pareja)
+        tamaño = lt.size(list_artistas)
+    return tamaño
+
 def ArtistsSize(catalog):
     return mp.size(catalog['Artistas'])
 
