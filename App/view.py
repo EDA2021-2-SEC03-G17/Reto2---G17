@@ -45,6 +45,8 @@ def printMenu():
     print("1 ) Cargar información en el catálogo")
     print("2 ) Obras mas antiguas por medio")
     print("3 ) Numero total de obras por nacionalidad")
+    print("4 ) Prueba req 2")
+    print("5 ) Prueba req 4")
     print("0 ) Salir")
     print("")
     print("___________________________________________")
@@ -72,6 +74,10 @@ def numeroObrasNacionalidad(catalog):
     resultado = controller.obrasNacionalidad(catalog, nation)
     return resultado
 
+def obrasporNacionalidad(catalog):
+    mapa = controller.obrasporNacionalidad(catalog)
+    return mapa
+
 #MENU PRINCIPAL
 
 while True:
@@ -93,6 +99,16 @@ while True:
     
     elif int(inputs[0]) == 3:
         lista = numeroObrasNacionalidad(catalog)
+        print(lista)
+
+    elif int(inputs[0]) == 4:
+        date1 = input('Ingrese la fecha 1 con el formato YYYY-MM-DD\n')
+        date2 = input('Ingrese la fecha 2 con el formato YYYY-MM-DD\n')
+        resultado = controller.artworksbyDate(date1, date2, catalog)
+        print(resultado)
+    
+    elif int(inputs[0]) == 5:
+        lista = controller.obrasporNacionalidad(catalog)
         print(lista)
     else:
         sys.exit(0)

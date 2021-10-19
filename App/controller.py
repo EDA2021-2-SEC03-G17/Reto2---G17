@@ -92,3 +92,12 @@ def ArtistsSize(catalog):
 def ArtworksSize(catalog):
     return model.ArtworksSize(catalog)
 
+def artworkbyDate(catalog):
+    return model.add_map_bydate(catalog)
+
+def artworksbyDate(date1, date2, catalog):
+    return model.artworksbyDate(catalog, date1, date2)
+
+def obrasporNacionalidad(catalog):
+    return model.artworksbyNationality(catalog)
+
