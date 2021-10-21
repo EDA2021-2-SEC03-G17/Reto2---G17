@@ -194,8 +194,6 @@ def artworksbyNationality(catalog):
     for i in lt.iterator(first_ten):
         pareja = mp.get(mapa_nuevo,i)
         lt.addLast(first_ten_nationalities,pareja)
-    x = mp.get(nacionalidades,'American')
-    y=lt.size(me.getValue(x))
     return first_ten_nationalities
 
 
