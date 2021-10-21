@@ -49,15 +49,12 @@ def loadData(catalog):
     t1=loadArtists(catalog)
     t2=loadArtworks(catalog)
     print("("+str(t1+t2)+")")
-    print("Nacionalidad"+str(t1))
-    print("Medio"+str(t2))
-    
 
 
 def loadArtists(catalog):
 
     start_time = time.process_time() 
-    booksfile = cf.data_dir + 'Artists-utf8-small.csv'
+    booksfile = cf.data_dir + 'MoMA/Artists-utf8-small.csv'
     input_file = csv.DictReader(open(booksfile, encoding='utf-8'))
     for artist in input_file:
         model.addArtist(catalog, artist)
@@ -68,7 +65,7 @@ def loadArtists(catalog):
 def loadArtworks(catalog):
 
     start_time = time.process_time() 
-    tagsfile = cf.data_dir + 'Artworks-utf8-small.csv'
+    tagsfile = cf.data_dir + 'MoMA/Artworks-utf8-small.csv'
     input_file = csv.DictReader(open(tagsfile, encoding='utf-8'))
     for artwork in input_file:
         model.addArtwork(catalog, artwork)
