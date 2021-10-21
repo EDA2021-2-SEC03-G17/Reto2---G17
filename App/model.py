@@ -29,7 +29,7 @@ def newCatalog():
                'Identificador': None}
                
 
-    catalog['Artistas'] = mp.newMap(76,
+    catalog['Artistas'] = mp.newMap(15225,
                                    maptype='PROBING',
                                    loadfactor=4.0)
 
@@ -279,6 +279,7 @@ def get_last_3(dic,catalog,f1):
 
 #REQ 2
 def artworksbyDate(catalog, date1, date2):
+    start_time = time.process_time() 
     fechas = sa.sort(mp.keySet(catalog['Fecha']),DateComparisonHigher)
     nuevo_mapa = mp.newMap(numelements=300,maptype='CHAINING',loadfactor=1)
     for i in range(0, lt.size(fechas)):
@@ -320,7 +321,9 @@ def artworksbyDate(catalog, date1, date2):
         lt.addLast(lista_respuesta,listadeobras)
         i+=1
         tamaño+=lt.size(listadeobras)
-    return 'Hay un total de: '+str(contador) + 'obras en el rango', 'Las obras compradas en ese rango fueron: ' + str(contador_purchase), lista_respuesta,
+    stop_time = time.process_time() 
+    elapsed_time_mseg = (stop_time - start_time)*1000
+    return 'Hay un total de: '+str(contador) + 'obras en el rango', 'Las obras compradas en ese rango fueron: ' + str(contador_purchase), lista_respuesta, elapsed_time_mseg
 
 #REQ 3
 def artista_tecnica(catalog,nombre):
@@ -379,6 +382,7 @@ def artista_tecnica(catalog,nombre):
 
 #REQ 4
 def artworksbyNationality(catalog):
+    start_time = time.process_time() 
     nacionalidades = catalog['Nacionalidad Artistas']
     nacionalidad_lista = mp.keySet(nacionalidades)
     mapa_nuevo =  mp.newMap(numelements=200,maptype='CHAINING',loadfactor=1)
@@ -394,7 +398,9 @@ def artworksbyNationality(catalog):
     for i in lt.iterator(first_ten):
         pareja = mp.get(mapa_nuevo,i)
         lt.addLast(first_ten_nationalities,pareja)
-    return first_ten_nationalities
+    stop_time = time.process_time() 
+    elapsed_time_mseg = (stop_time - start_time)*1000
+    return first_ten_nationalities, elapsed_time_mseg
 
 def firstandlast2(catalog,lst):
     map_nacionalidades = catalog['Nacionalidad Artistas']
