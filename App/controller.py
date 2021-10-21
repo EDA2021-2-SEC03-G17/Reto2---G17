@@ -80,6 +80,22 @@ def loadArtworks(catalog):
 
 # Funciones de consulta sobre el catálogo
 
+#Req 1
+
+def crono_artistas(catalog,f_i,f_f):
+    catalogo=catalog["Fecha Artistas"]
+    return model.crono_artistas(catalogo,f_i,f_f)
+
+#Req 3
+
+def artista_tecnica(catalog,nombre):
+    return model.artista_tecnica(catalog,nombre)
+
+#Req 5
+
+def transporteobras(catalog,depmuseo):
+    return model.transporteobras(catalog,depmuseo)
+
 def medioAntiguo(catalog,num,medio):
     return model.medioAntiguo(catalog,num,medio)
 

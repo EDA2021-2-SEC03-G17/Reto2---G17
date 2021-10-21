@@ -43,14 +43,15 @@ def printMenu():
     print("___________________________________________")
     print("")
     print("1 ) Cargar información en el catálogo")
-    print("2 ) Obras mas antiguas por medio")
-    print("3 ) Numero total de obras por nacionalidad")
-    print("4 ) Prueba req 2")
-    print("5 ) Prueba req 4")
+    print("2 ) Listar cronológicamente los artistas")
+    print("3 ) Listar cronológicamente las adquisiciones")
+    print("4 ) Clasificar las obras de un artista por técnica")
+    print("5 ) Clasificar las obras por la nacionalidad de sus creadores")
+    print("6 ) Transportar obras de un departamento ")
+    print("7 ) Encontrar los artistas más prolíficos del museo ")
     print("0 ) Salir")
     print("")
     print("___________________________________________")
-
 #CARGA DE DATOS [1]
 def initCatalog():
     return controller.initCatalog()
@@ -62,11 +63,29 @@ catalog = None
 
 #REQ1 [2]
 
+def crono_artistas(catalogo):
+    f_i=int(input("Ingrese la fecha minima de busqueda: "))
+    f_f=int(input("Ingrese la fecha maxima de busqueda: "))
+    info=controller.crono_artistas(catalogo,f_i,f_f)
+    return info
+
+#REQ3 [4]
+
+def artista_tecnica(catalogo):
+    nombre=(input("Ingrese el nombre del artista que desea consultar: "))
+    return controller.artista_tecnica(catalogo,nombre)
+
+#REQ5 [6]
+def transporteobras (catalog):
+    dep=input("Ingrese el departamento que desee buscar: ")
+    return controller.transporteobras(catalog,dep)
+
 def medioAntiguo(catalog):
     num=int(input("Ingrese el numero de obras que quiere ver: "))
     medio=input("Ingrese el medio que desea consultar: ")
     antiguos=controller.medioAntiguo(catalog,num,medio)
     return antiguos
+
 
 #REQ2 [3]
 def numeroObrasNacionalidad(catalog):
@@ -94,22 +113,33 @@ while True:
         print(" ")
 
     elif int(inputs[0]) == 2:
-        lista=medioAntiguo(catalog)
-        print(lista)
-    
-    elif int(inputs[0]) == 3:
-        lista = numeroObrasNacionalidad(catalog)
-        print(lista)
+        dic,elapsed_time_mseg=crono_artistas(catalog)
+        for key,val in dic.items():
+            print(key,val)
+        print("La funcion tarda "+str(elapsed_time_mseg)+" milisegundos.")
 
-    elif int(inputs[0]) == 4:
+    elif int(inputs[0]) == 3:
         date1 = input('Ingrese la fecha 1 con el formato YYYY-MM-DD\n')
         date2 = input('Ingrese la fecha 2 con el formato YYYY-MM-DD\n')
         resultado = controller.artworksbyDate(date1, date2, catalog)
         print(resultado)
-    
+
+    elif int(inputs[0]) == 4:
+        dic,elapsed_time_mseg=artista_tecnica(catalog)
+        for key,val in dic.items():
+            print(key,val)
+        print("La funcion tarda "+str(elapsed_time_mseg)+" milisegundos.")
+
     elif int(inputs[0]) == 5:
         lista = controller.obrasporNacionalidad(catalog)
         print(lista)
+    
+    elif int(inputs[0]) == 6:
+        dic,elapsed_time_mseg=transporteobras(catalog)
+        for key,val in dic.items():
+            print(key,val)
+        print("La funcion tarda "+str(elapsed_time_mseg)+" milisegundos.")
+    
     else:
         sys.exit(0)
 sys.exit(0)
